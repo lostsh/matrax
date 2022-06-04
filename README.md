@@ -1,5 +1,6 @@
 # matrax
 Ulgy matrix effect for windows terminal
+> The main goal of this ... of that, is to show a cool matrix effect in the default windows terminal. The simplest way possible.
 
 This is a first ugly version, just to show what its going to look like.
 
