@@ -12,6 +12,7 @@ If u really want to take a look at the preview version.
 > You need to have a runing *Windows x64*, once it's done you can [download the preview](https://github.com/lostsh/matrax/releases/download/V.01/matrax-webinstaller.zip) version.
 
 ### Getting started with preview version
-Easy. Just click the `matrax.bat` file. On the first run it will download `exe` file and dependances *(into the `bin` folder)*. Then it will launch the executable.
+Easy. First extract.
+Just click the `matrax.bat` file. On the first run it will download `exe` file and dependances *(into the `bin` folder)*. Then it will launch the executable.
 
 ![preview of the preview](preview.png)
