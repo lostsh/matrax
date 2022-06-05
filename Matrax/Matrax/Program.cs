@@ -14,22 +14,25 @@ namespace Matrax
             Console.ForegroundColor = ConsoleColor.Green;
 
             /// App arguments
-            bool sleep = true;//TODO : randomly update tiles
-            bool async = false;
-            foreach(string s in args){
-                if (s.Equals("--no-block")) Console.WriteLine("Not yet implemented");//Column.BLOCK = false;
-                if (s.Equals("--help")) { Console.WriteLine("Options are :\n\t--no-block : do not display block char\n\t--clear : clear on each frame\n\t--no-sleep : do not sleep between each frame"); Console.ReadKey(); return; }
+            bool sleep = true;
+            bool async = true;
+            foreach (string s in args){
+                if (s.Equals("--help")) { Console.WriteLine("Options are :\n" +
+                    "\t--block : display block char at the column end\n" +
+                    "\t--no-sleep : do not sleep between each frame\n" +
+                    "\t--async    : fade column in an async way"); Console.ReadKey(); return; }
+                if (s.Equals("--block")) Console.Error.WriteLine("bloc function not yet implemented");//Column.BLOCK = true;
                 if (s.Equals("--async")) async = true;
                 if (s.Equals("--no-sleep")) sleep = false;
             }
 
-
+            /// Run the app
             int height = Console.WindowHeight;
             int width = Console.WindowWidth;
-            //Console.SetBufferSize(width+1, height+1);
             List<Column> columns = new List<Column>();
-            for (int i = 0; i < width; i++) columns.Add(new Column { Height = height, X = i });
 
+            /// Draw initial screen
+            for (int i = 0; i < width; i++) columns.Add(new Column { Height = height, X = i });
             StringBuilder cout = new StringBuilder();
             for (int i = 0; i < height; i++)
             {
@@ -38,10 +41,22 @@ namespace Matrax
             }
             Console.Write(cout);
 
+            /// Update screen
+            Random rand = new Random();
             while (true)
             {
-                columns.ForEach(c => c.writeFade());
-                if(sleep)System.Threading.Thread.Sleep(150);
+                if (async)
+                {
+                    for(int i=0; i < columns.Count; i+=4)
+                    {
+                        columns[rand.Next(0, columns.Count)].writeFade();
+                    }
+                }
+                else
+                {
+                    columns.ForEach(c => c.writeFade());
+                }
+                if(sleep)System.Threading.Thread.Sleep((async?50:150));
             }
         }
     }

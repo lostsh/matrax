@@ -72,7 +72,7 @@ namespace Matrax
                     yStart++;
                 }
                 addBottomChar();
-                if (BLOCK) invertBottomChars();
+                //if (BLOCK) invertBottomChars();
             }
         }
 
@@ -82,11 +82,17 @@ namespace Matrax
         /// </summary>
         private void invertBottomChars()
         {
-            if(chars.Count > 1)
+            if (chars.Count > 1)
             {
                 Char tmp = chars[chars.Count - 1];
+                // put the bloc (n-2) at the bottom
                 chars[chars.Count - 1] = chars[chars.Count - 2];
+                Console.SetCursorPosition(X, yStart + chars.Count);
+                Console.Write("\b" + chars[chars.Count - 1]);
+                // replace the (n-2) with the char supposed to be at bottom
                 chars[chars.Count - 2] = tmp;
+                Console.SetCursorPosition(X, yStart + chars.Count - 1);
+                Console.Write("\b" + chars[chars.Count - 2]);
             }
         }
 
