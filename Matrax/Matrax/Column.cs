@@ -5,10 +5,12 @@ namespace Matrax
 {
     class Column
     {
-        public static bool BLOCK = true;
+        public static bool BLOCK = false;
 
         /// max height of a column
         public int Height { get; set; } = 24;
+
+        public int X { get; set; }
 
         /// y position of the begening
         private int yStart = 0;
@@ -24,6 +26,7 @@ namespace Matrax
             initVars();
         }
 
+        /// init all variables
         private void initVars()
         {
             Random rand = new Random((int)DateTime.Now.Ticks);
@@ -34,45 +37,42 @@ namespace Matrax
             if(BLOCK) chars.Add(new Char{ Character = '█' });
         }
 
-        /// fade column down
-        public void fade() {
-
-            // // if the char len < length
-            // add a bottom char
-            if (yStart + chars.Count < Height && chars.Count < length)
-            {
-                chars.Add(new Char());
-                if (BLOCK) invertBottomChars();
-            }
-
-            // // if the chars len == length
-            // remove the top char
-            // add a new bottom char
-            // update yStart to +1
-            if(chars.Count == length && yStart + chars.Count < Height)
-            {
+        private void removeTopChar(){
+            if(chars.Count > 0){
                 chars.RemoveAt(0);
-                chars.Add(new Char());
-                yStart++;
-                if (BLOCK) invertBottomChars();
+                Console.SetCursorPosition(X, yStart);
+                Console.Write("\b ");
             }
+        }
 
-            // if u toutch the bottom of the screen
-            //  fade until the end of the column
-            //  choose a new random size and yStart to restart
+        private void addBottomChar(){
+            Console.SetCursorPosition(X, yStart+chars.Count);
+            chars.Add(new Char());
+            Console.Write("\b"+chars[chars.Count-1]);
+        }
+
+        public void writeFade(){
             if(yStart + chars.Count >= Height)
             {
-                System.Diagnostics.Debug.WriteLine("Now fade off");
                 if (chars.Count > 0)
                 {
-                    // fade until the end
-                    chars.RemoveAt(0);
+                    removeTopChar();
                     yStart++;
                 }
                 else
                 {
                     initVars();
                 }
+            }
+            else
+            {
+                if(chars.Count == length)
+                {
+                    removeTopChar();
+                    yStart++;
+                }
+                addBottomChar();
+                if (BLOCK) invertBottomChars();
             }
         }
 
@@ -94,7 +94,7 @@ namespace Matrax
         {
             Char c = new Char { Character = ' ' };
             int index = y - yStart;
-            if (index > 0 && index < chars.Count) c = chars[index];
+            if (index > 0 && index < chars.Count-1) c = chars[index];
             return c;
         }
 

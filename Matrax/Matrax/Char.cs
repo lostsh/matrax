@@ -26,7 +26,8 @@ namespace Matrax
             // choose a char in the choosen interval
             int charDecimalCode = rand.Next(Ranges[charRange].Item1, Ranges[charRange].Item2);
 
-            Character = Convert.ToChar(charDecimalCode);
+            //Character = Convert.ToChar(charDecimalCode);
+            Character = '0';
         }
 
         public override string ToString()

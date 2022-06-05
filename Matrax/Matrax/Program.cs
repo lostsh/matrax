@@ -26,22 +26,22 @@ namespace Matrax
 
             int height = Console.WindowHeight;
             int width = Console.WindowWidth;
-            Console.SetBufferSize(width+1, height+1);
+            //Console.SetBufferSize(width+1, height+1);
             List<Column> columns = new List<Column>();
-            for (int i = 0; i < width; i++) columns.Add(new Column { Height = height });
+            for (int i = 0; i < width; i++) columns.Add(new Column { Height = height, X = i });
+
+            StringBuilder cout = new StringBuilder();
+            for (int i = 0; i < height; i++)
+            {
+                columns.ForEach(c => cout.Append(c.get(i)));
+                cout.Append('\n');
+            }
+            Console.Write(cout);
 
             while (true)
             {
-                StringBuilder cout = new StringBuilder();
-                for (int i = 0; i < height; i++)
-                {
-                    columns.ForEach(c => cout.Append(c.get(i)));
-                    cout.Append('\n');
-                }
-                Console.Write(cout);
-                columns.ForEach(c => c.fade());
+                columns.ForEach(c => c.writeFade());
                 if(sleep)System.Threading.Thread.Sleep(150);
-                if(clear)Console.Clear();
             }
         }
     }
