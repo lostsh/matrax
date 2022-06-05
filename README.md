@@ -10,8 +10,8 @@ Ulgy matrix effect for native terminal
 ## Download 
 | archi \ os | Linux | Windows | MacOs X |
 |:----------:|-------|---------|---------|
-|     ARM    | [matrax_linux-arm.tgz](#) | [matrax_win-arm.zip](#) | |
-|     x64    | [matrax_linux-x64.tgz](#) | [matrax_win-x64.zip](#) | [matrax_osx-x64.zip](#) |
-|     x86    | | [matrax_win-x86.zip](#) | |
+|     ARM    | [matrax_linux-arm.tgz](https://github.com/lostsh/matrax/releases/download/V1.0/matrax_linux-arm.zip) | [matrax_win-arm.zip](https://github.com/lostsh/matrax/releases/download/V1.0/matrax_win-arm.zip) | |
+|     x64    | [matrax_linux-x64.tgz](https://github.com/lostsh/matrax/releases/download/V1.0/matrax_linux-x64.zip) | [matrax_win-x64.zip](https://github.com/lostsh/matrax/releases/download/V1.0/matrax_win-x64.zip) | [matrax_osx-x64.zip](https://github.com/lostsh/matrax/releases/download/V1.0/matrax_osx-x64.zip) |
+|     x86    | | [matrax_win-x86.zip](https://github.com/lostsh/matrax/releases/download/V1.0/matrax_win-x86.zip) | |
 
 ![preview of the preview](preview.png)
