@@ -14,12 +14,12 @@ namespace Matrax
             Console.ForegroundColor = ConsoleColor.Green;
 
             /// App arguments
-            bool clear = false;
-            bool sleep = true;
+            bool sleep = true;//TODO : randomly update tiles
+            bool async = false;
             foreach(string s in args){
                 if (s.Equals("--no-block")) Console.WriteLine("Not yet implemented");//Column.BLOCK = false;
                 if (s.Equals("--help")) { Console.WriteLine("Options are :\n\t--no-block : do not display block char\n\t--clear : clear on each frame\n\t--no-sleep : do not sleep between each frame"); Console.ReadKey(); return; }
-                if (s.Equals("--clear")) clear = true;
+                if (s.Equals("--async")) async = true;
                 if (s.Equals("--no-sleep")) sleep = false;
             }
 
